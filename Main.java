@@ -1,20 +1,32 @@
-import java.util.ArrayList;
-
-
 
 public class Main {
     public static void main(String[] args) {
-        Item tissues = new Item("Tissues", 3);
-        Item bulkDiscountTissues = new Item("Bulk Discount Tissues", 4);
+        LinkedList list = new LinkedList();
+        list.insert(1);
+        list.insert(2);
+        list.insert(3);
+        list.insert(4);
+        list.insert(5);
 
-        ItemOrder tissuesOrder = new ItemOrder(tissues, 5);
+        // Testing removeAfter
+        list.removeAfter(list.head.next);
+        System.out.println("Linked list after removing node following the second node:");
+        list.printList();
 
-        ShoppingCart cart = new ShoppingCart();
-        cart.addItemOrder(tissuesOrder);
-        cart.addItemOrder(new ItemOrder(bulkDiscountTissues, 2));
-        cart.addItemOrder(new ItemOrder(bulkDiscountTissues, 2));
-        cart.addItemOrder(new ItemOrder(tissues, 1));
+        // Testing copy
+        LinkedList copiedList = list.copy(list.head);
+        System.out.println("Copied linked list:");
+        copiedList.printList();
 
-        System.out.println("Total price: $" + cart.totalPrice());
+        // Testing removeDuplicate
+        list.insert(3);
+        System.out.println("Linked list before removing duplicate nodes:");
+        list.printList();
+        list.removeDuplicate(list.head, 3);
+        System.out.println("Linked list after removing nodes with value 3:");
+        list.printList();
+
+        // Testing max
+        System.out.println("Maximum value in the linked list: " + list.max(list.head));
     }
 }
