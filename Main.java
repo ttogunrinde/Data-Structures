@@ -1,32 +1,37 @@
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
-        list.insert(1);
-        list.insert(2);
-        list.insert(3);
-        list.insert(4);
-        list.insert(5);
+        Scanner scanner = new Scanner(System.in);
 
-        // Testing removeAfter
-        list.removeAfter(list.head.next);
-        System.out.println("Linked list after removing node following the second node:");
-        list.printList();
+        // Prompt the user for input
+        System.out.println("Enter up to 20 double values (type 'done' when finished):");
 
-        // Testing copy
-        LinkedList copiedList = list.copy(list.head);
-        System.out.println("Copied linked list:");
-        copiedList.printList();
+        // Create an array to store the double values
+        double[] numbers = new double[20];
+        int count = 0;
 
-        // Testing removeDuplicate
-        list.insert(3);
-        System.out.println("Linked list before removing duplicate nodes:");
-        list.printList();
-        list.removeDuplicate(list.head, 3);
-        System.out.println("Linked list after removing nodes with value 3:");
-        list.printList();
+        // Read input from the user until they type 'done' or reach the limit of 20 values
+        while (count < 20) {
+            String input = scanner.nextLine();
+            if (input.equalsIgnoreCase("done")) {
+                break;
+            }
 
-        // Testing max
-        System.out.println("Maximum value in the linked list: " + list.max(list.head));
+            try {
+                // Parse the input into a double and store it in the array
+                double number = Double.parseDouble(input);
+                numbers[count] = number;
+                count++;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid double value or 'done' to finish.");
+            }
+        }
+
+        // Display the entered numbers
+        System.out.println("Entered numbers:");
+        for (int i = 0; i < count; i++) {
+            System.out.println(numbers[i]);
+        }
     }
 }
